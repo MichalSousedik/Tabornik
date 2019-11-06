@@ -1,0 +1,40 @@
+<div class="container content" *ngIf="loaded">
+
+  <h1>{{camp.detail.name}}</h1>
+  <h3>{{camp.detail.startDate | slice:8:10}}. {{camp.detail.startDate | slice:5:7}}. {{camp.detail.startDate | slice:0:4}} -
+      {{camp.detail.endDate | slice:8:10}}. {{camp.detail.endDate | slice:5:7}}. {{camp.detail.endDate | slice:0:4}}</h3>
+  <div class="row">
+    <div class="col-md-6 right">
+      Místo konání
+    </div>
+    <div class="col-md-6 left">
+      {{camp.detail.address}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 right">
+      Vedoucí pracovník
+    </div>
+    <div class="col-md-6 left">
+      {{camp.detail.leader}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 right">
+      Zástupcé vedoucího pracovníka
+    </div>
+    <div class="col-md-6 left">
+      {{camp.detail.backup}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 right">
+      Zdravotník
+    </div>
+    <div class="col-md-6 left">
+      {{camp.detail.medic}}
+    </div>
+  </div>
+</div>

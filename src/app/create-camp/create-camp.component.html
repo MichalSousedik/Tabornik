@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row " style="display:flex;">
+    <div class="col-md-8">
+      <h1>Vytvořit tábor</h1>
+    </div>
+  </div>
+  <form (ngSubmit)="createCamp()">
+    <div class="form-group">
+      <label>Název táboru</label>
+      <input class="form-control" type="text" placeholder="Narcos camp" name="name" [(ngModel)]="camp.detail.name" >
+    </div>
+    <div class="form-group">
+      <label>Adresa</label>
+      <input class="form-control" placeholder="La Columbia" name="address" [(ngModel)]="camp.detail.address"/>
+    </div>
+    <div class="form-group">
+      <label>Kapacita</label>
+      <input class="form-control" placeholder="3" name="capacity" [(ngModel)]="camp.capacity"/>
+    </div>
+    <div class="row form-group">
+      <div class="form-group col-md-6">
+        <label>Začátek táboru</label>
+        <input class="form-control" type="date" name="startDate" [(ngModel)]="camp.detail.startDate"/>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Konec táboru</label>
+        <input class="form-control" type="date" name="endDate" [(ngModel)]="camp.detail.endDate"/>
+      </div>
+    </div>
+
+    <button class="btn btn-default">
+      Vytvořit tábor
+    </button>
+  </form>
+</div>
