@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="display:flex;">
     <div class="col-md-8">
-      <h1>Kopírovat pracovníky z jiného táboru</h1>
+      <h1>Kopírovat děti z jiného táboru</h1>
     </div>
     <div class="col-md-4 buttons">
     </div>
@@ -15,7 +15,7 @@
     </select>
   </div>
 
-  <div *ngIf="workers.length > 0">
+  <div *ngIf="children.length > 0">
     <table class="table">
       <thead>
       <tr>
@@ -29,21 +29,25 @@
           Přezdívka
         </th>
         <th>
-          Pozice
+          Zákonný zástupce
+        </th>
+        <th>
+          Kontakt z. z.
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let worker of workers">
-        <td>{{worker.name}}</td>
-        <td>{{worker.age}}</td>
-        <td>{{worker.nickname}}</td>
-        <td>{{worker.position}}</td>
+      <tr *ngFor="let child of children">
+        <td>{{child.name}}</td>
+        <td>{{child.age}}</td>
+        <td>{{child.nickname}}</td>
+        <td>{{child.representative}}</td>
+        <td>{{child.contact}}</td>
         <td>
-          <button (click)="edit(worker)" class="btn" style="padding: 0; margin-left: 5px" title="Upravit pozici">
+          <button (click)="edit(child)" class="btn" style="padding: 0; margin-left: 5px" title="Upravit">
             <span class="glyphicon glyphicon-edit"></span>
           </button>
-          <button (click)="remove(worker.id)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
+          <button (click)="remove(child.id)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </td>
@@ -53,8 +57,8 @@
     </table>
     <button (click)="copy()" class="btn btn-default">Kopírovat</button>
   </div>
-  <div *ngIf="workers.length === 0 && campId !== undefined">
-    Žádní pracovníci k výběru
+  <div *ngIf="children.length === 0 && campId !== undefined">
+    Žádné děti k výběru
   </div>
 
 </div>

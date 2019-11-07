@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../user';
 import {CampService} from '../camp.service';
 import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {EditWorkerComponent} from '../edit-worker/edit-worker.component';
 
 @Component({
   selector: 'app-accepted-workers',
@@ -13,7 +15,8 @@ export class AcceptedWorkersComponent implements OnInit {
   accepteds: User[];
 
   constructor(private campService: CampService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.campService.getWorkers(+this.getCampId()).subscribe(
@@ -29,7 +32,10 @@ export class AcceptedWorkersComponent implements OnInit {
     this.campService.removeWorker(id, +this.getCampId());
   }
 
-  edit(id: number) {
-    
+  edit(worker: User) {
+    const dialogRef = this.dialog.open(EditWorkerComponent, {data: worker});
+    dialogRef.afterClosed().subscribe(result => {
+      worker.position = result;
+    });
   }
 }

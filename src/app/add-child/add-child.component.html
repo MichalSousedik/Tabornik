@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row" style="display:flex;">
+    <div class="col-md-8">
+      <h1>Přidat děti</h1>
+    </div>
+    <div class="col-md-4 buttons">
+      <button (click)="create()" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Vytvořit dítě
+      </button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>
+        Jméno
+      </th>
+      <th>
+        Věk
+      </th>
+      <th>
+        Přezdívka
+      </th>
+      <th>
+        Zákonný zástupce
+      </th>
+      <th>
+        Kontakt z. z.
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let child of children">
+      <td>{{child.name}}</td>
+      <td>{{child.age}}</td>
+      <td>{{child.nickname}}</td>
+      <td>{{child.representative}}</td>
+      <td>{{child.contact}}</td>
+      <td>
+        <button (click)="add(child)" class="btn" style="padding: 0; margin-left: 5px" title="Přidat">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>

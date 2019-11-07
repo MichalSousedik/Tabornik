@@ -22,6 +22,10 @@ import { CopyWorkersComponent } from './copy-workers/copy-workers.component';
 import {MatButtonModule, MatDialogModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditWorkerComponent } from './edit-worker/edit-worker.component';
+import { SearchCampComponent } from './search-camp/search-camp.component';
+import { EditChildComponent } from './edit-child/edit-child.component';
+import { CopyChildrenComponent } from './copy-children/copy-children.component';
+import { AddChildComponent } from './add-child/add-child.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +45,13 @@ import { EditWorkerComponent } from './edit-worker/edit-worker.component';
     AcceptedWorkersComponent,
     AddWorkerComponent,
     CopyWorkersComponent,
-    EditWorkerComponent
+    EditWorkerComponent,
+    SearchCampComponent,
+    EditChildComponent,
+    CopyChildrenComponent,
+    AddChildComponent
   ],
-  entryComponents: [ EditWorkerComponent ],
+  entryComponents: [ EditWorkerComponent, EditChildComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
