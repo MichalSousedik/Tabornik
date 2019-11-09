@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row " style="display:flex;">
+    <div class="col-md-6">
+      <h1>Jídelníček</h1>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <button routerLink="..//copy-food" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Kopírovat jídelníček z jiného tábora
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button (click)="alert('Exportovaný jídelníček')" class="btn btn-default" >
+            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+            Exportovat jídelníček
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button routerLink="..//generate-food" class="btn btn-default" disabled>
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            Vygenerovat menu
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button (click)="alert('Exportované suroviny')" class="btn btn-default">
+            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+            Exportovat suroviny
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table" style="margin-top: 20px">
+    <thead>
+    <tr>
+      <th>
+        Den
+      </th>
+      <th>
+        Typ
+      </th>
+      <th>
+        Snídaně
+      </th>
+      <th>
+        Svačina
+      </th>
+      <th>
+        Oběd
+      </th>
+      <th>
+        Svačina
+      </th>
+      <th>
+        Večeře
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let campMenu of campMenus">
+          <tr>
+            <td rowspan="2">{{campMenu.date | slice:8:10}}. {{campMenu.date | slice:5:7}}. {{campMenu.date | slice:0:4}}</td>
+            <td> Jídlo</td>
+            <td> {{getCampMenuName(campMenu.breakfastFood)}}</td>
+            <td> {{getCampMenuName(campMenu.snackLowFood)}}</td>
+            <td> {{getCampMenuName(campMenu.lunchFood)}}</td>
+            <td> {{getCampMenuName(campMenu.snackHighFood)}}</td>
+            <td> {{getCampMenuName(campMenu.dinnerFood)}}</td>
+            <td rowspan="2" class="button">
+              <button (click)="edit(campMenu.date)" class="btn" style="padding: 0; margin-left: 5px" title="Upravit">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Pití</td>
+            <td> {{getCampMenuName(campMenu.breakfastDrink)}}</td>
+            <td> {{getCampMenuName(campMenu.snackLowDrink)}}</td>
+            <td> {{getCampMenuName(campMenu.lunchDrink)}}</td>
+            <td> {{getCampMenuName(campMenu.snackHighDrink)}}</td>
+            <td> {{getCampMenuName(campMenu.dinnerDrink)}}</td>
+          </tr>
+      </ng-container>
+    </tbody>
+
+  </table>
+</div>

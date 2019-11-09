@@ -1,0 +1,67 @@
+<ng-container *ngIf="!showAddDrink && !showAddFood">
+
+<h2 mat-dialog-title>{{data.type}}</h2>
+<mat-dialog-content style="width: 400px;">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-8">
+                <mat-form-field style="width: 100%;">
+                    <mat-select [formControl]="foodCtrl" placeholder="Jídlo" >
+                        <mat-option>
+                            <ngx-mat-select-search [noEntriesFoundLabel]="'Nenalezeno'"
+                                                   [placeholderLabel]="'Najít'"
+                                                   [formControl]="foodFilterCtrl">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let menuItem of filteredFoods | async" [value]="menuItem">
+                            {{menuItem.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <button (click)="addFood()" class="btn btn-default icon">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Vytvořit jídlo
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="margin-top: 1em">
+        <div class="row">
+            <div class="col-md-8">
+                <mat-form-field style="width: 100%;">
+                    <mat-select [formControl]="drinkCtrl" placeholder="Pití" >
+                        <mat-option>
+                            <ngx-mat-select-search [noEntriesFoundLabel]="'Nenalezeno'"
+                                                   [placeholderLabel]="'Najít'"
+                                                   [formControl]="drinkFilterCtrl">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let menuItem of filteredDrinks | async" [value]="menuItem">
+                            {{menuItem.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <button (click)="addDrink()" class="btn btn-default icon">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Vytvořit pití
+                </button>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn btn-default" [mat-dialog-close]="getFoodDetail()">Upravit</button>
+    <button class="btn btn-default" mat-dialog-close style="margin-left: 10px">Zrušit</button>
+</mat-dialog-actions>
+
+</ng-container>
+<ng-container *ngIf="showAddFood || showAddDrink">
+    <app-add-food-detail
+        [type]="getType()"
+        (create)="create($event)"></app-add-food-detail>
+</ng-container>

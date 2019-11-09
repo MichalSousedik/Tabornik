@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row" style="display:flex;">
+    <div class="col-md-8">
+      <h1>Kopírovat jídelníček z jiného táboru</h1>
+    </div>
+    <div class="col-md-4 buttons">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="camp">Ze kterého táboru kopírovat?</label>
+    <select (change)="campChanged()" class="form-control" id="camp" style="width: 20%" name="campId" [(ngModel)]="campId">
+      <option value="" disabled></option>
+      <option *ngFor="let camp of camps" [value]="camp.id" >{{camp.detail.name}}</option>
+    </select>
+  </div>
+
+  <div *ngIf="campMenus.length > 0">
+    <table class="table" style="margin-top: 20px">
+      <thead>
+      <tr>
+        <th>
+          Den
+        </th>
+        <th>
+          Typ
+        </th>
+        <th>
+          Snídaně
+        </th>
+        <th>
+          Svačina
+        </th>
+        <th>
+          Oběd
+        </th>
+        <th>
+          Svačina
+        </th>
+        <th>
+          Večeře
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let campMenu of campMenus">
+        <tr>
+          <td rowspan="2">{{campMenu.date | slice:8:10}}. {{campMenu.date | slice:5:7}}. {{campMenu.date | slice:0:4}}</td>
+          <td> Jídlo</td>
+          <td> {{getCampMenuName(campMenu.breakfastFood)}}</td>
+          <td> {{getCampMenuName(campMenu.snackLowFood)}}</td>
+          <td> {{getCampMenuName(campMenu.lunchFood)}}</td>
+          <td> {{getCampMenuName(campMenu.snackHighFood)}}</td>
+          <td> {{getCampMenuName(campMenu.dinnerFood)}}</td>
+        </tr>
+        <tr>
+          <td>Pití</td>
+          <td> {{getCampMenuName(campMenu.breakfastDrink)}}</td>
+          <td> {{getCampMenuName(campMenu.snackLowDrink)}}</td>
+          <td> {{getCampMenuName(campMenu.lunchDrink)}}</td>
+          <td> {{getCampMenuName(campMenu.snackHighDrink)}}</td>
+          <td> {{getCampMenuName(campMenu.dinnerDrink)}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+
+    </table>
+    <button (click)="copy()" class="btn btn-default">Kopírovat</button>
+  </div>
+  <div *ngIf="campMenus.length === 0 && campId !== undefined">
+    Žádné jídla na výběr
+  </div>
+
+</div>

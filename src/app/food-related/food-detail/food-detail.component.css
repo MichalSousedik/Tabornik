@@ -1,0 +1,27 @@
+.content {
+    width: 40%;
+    text-align: center;
+    padding-bottom: 10em;
+}
+
+.card {
+    border: 1px solid #000000;
+    padding: 1.5em;
+    margin:auto;
+    margin-top: 2em;
+
+
+}
+
+h3{
+    margin-top: 0;
+}
+
+.text-right{
+    font-weight: bold;
+}
+
+.row {
+    margin-top: 0.5em;
+}
+

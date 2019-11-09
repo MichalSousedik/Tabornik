@@ -1,19 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DetailComponent} from './detail/detail.component';
-import {WorkersComponent} from './workers/workers.component';
-import {ChildrenComponent} from './children/children.component';
-import {FoodComponent} from './food/food.component';
-import {CampListComponent} from './camp-list/camp-list.component';
-import {NotificationsComponent} from './notifications/notifications.component';
-import {CampComponent} from './camp/camp.component';
-import {CreateCampComponent} from './create-camp/create-camp.component';
-import {ScheduleComponent} from './schedule/schedule.component';
-import {AddWorkerComponent} from './add-worker/add-worker.component';
-import {CopyWorkersComponent} from './copy-workers/copy-workers.component';
-import {SearchCampComponent} from './search-camp/search-camp.component';
-import {CopyChildrenComponent} from './copy-children/copy-children.component';
-import {AddChildComponent} from './add-child/add-child.component';
+import {DetailComponent} from './camp-related/detail/detail.component';
+import {WorkersComponent} from './worker-related/workers/workers.component';
+import {ChildrenComponent} from './child-related/children/children.component';
+import {FoodComponent} from './food-related/food/food.component';
+import {CampListComponent} from './camp-related/camp-list/camp-list.component';
+import {NotificationsComponent} from './not-relevant/notifications/notifications.component';
+import {CampComponent} from './camp-related/camp/camp.component';
+import {CreateCampComponent} from './camp-related/create-camp/create-camp.component';
+import {ScheduleComponent} from './not-relevant/schedule/schedule.component';
+import {AddWorkerComponent} from './worker-related/add-worker/add-worker.component';
+import {CopyWorkersComponent} from './worker-related/copy-workers/copy-workers.component';
+import {SearchCampComponent} from './not-relevant/search-camp/search-camp.component';
+import {CopyChildrenComponent} from './child-related/copy-children/copy-children.component';
+import {AddChildComponent} from './child-related/add-child/add-child.component';
+import {FoodDetailComponent} from './food-related/food-detail/food-detail.component';
+import {CopyFoodComponent} from './food-related/copy-food/copy-food.component';
 
 
 const routes: Routes = [
@@ -33,7 +35,9 @@ const routes: Routes = [
             {path: 'add-worker', component: AddWorkerComponent},
             {path: 'copy-workers', component: CopyWorkersComponent},
             {path: 'copy-children', component: CopyChildrenComponent},
-            {path: 'add-child', component: AddChildComponent}
+            {path: 'copy-food', component: CopyFoodComponent},
+            {path: 'add-child', component: AddChildComponent},
+            {path: 'food-detail/:date', component: FoodDetailComponent}
         ]
     }
 

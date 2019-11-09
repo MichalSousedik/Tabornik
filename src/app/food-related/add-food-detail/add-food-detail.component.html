@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Vytvořit {{type}}</h2>
+<mat-dialog-content style="width: 500px;">
+  <div class="form-group">
+    <label>Název</label>
+    <input class="form-control" type="text" placeholder="Název" name="name" [(ngModel)]="menuItem.name" >
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label>Ingredience</label>
+        <input class="form-control" placeholder="Ingredience" name="ingredient" [(ngModel)]="ingredient.name"/>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label>Množství</label>
+        <input class="form-control" placeholder="Množství" name="amount" [(ngModel)]="ingredient.amount"/>
+      </div>
+    </div>
+    <div class="col-md-2" style="padding-top: 1.7em">
+      <button class="btn btn-default" (click)="addIngredient()">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+  </div>
+
+  <table class="table">
+    <th>Ingredience</th>
+    <th>Množství</th>
+    <tbody>
+      <tr *ngFor="let ingre of menuItem.ingredients">
+        <td>{{ingre.name}}</td>
+        <td>{{ingre.amount}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-default" (click)="add()">Vytvořit</button>
+  <button class="btn btn-default" (click)="close()" style="margin-left: 10px">Zrušit</button>
+</mat-dialog-actions>
