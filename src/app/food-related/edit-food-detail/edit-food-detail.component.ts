@@ -30,6 +30,11 @@ export class EditFoodDetailComponent implements OnInit, OnDestroy {
     public drinkFilterCtrl: FormControl = new FormControl();
     public filteredDrinks: ReplaySubject<MenuItem[]> = new ReplaySubject<MenuItem[]>(1);
 
+    filterFoodNone = false;
+    filterDrinkNone = false;
+    preFilledName: string;
+    preFilledDrinkName: string;
+
     constructor(private menuService: MenuService,
                 public dialog: MatDialog,
                 @Inject(MAT_DIALOG_DATA) public data: FoodDetail) {
@@ -88,6 +93,15 @@ export class EditFoodDetailComponent implements OnInit, OnDestroy {
         this.filteredFoods.next(
             this.foodItems.filter(foodItem => foodItem.name.toLowerCase().indexOf(search) > -1)
         );
+
+        this.filteredFoods.subscribe(f => {
+            if (f.length === 0) {
+                this.filterFoodNone = true;
+                this.preFilledName = search;
+            } else {
+                this.filterFoodNone = false;
+            }
+        });
     }
 
     protected filterDrinks() {
@@ -106,6 +120,16 @@ export class EditFoodDetailComponent implements OnInit, OnDestroy {
         this.filteredDrinks.next(
             this.drinkItems.filter(foodItem => foodItem.name.toLowerCase().indexOf(search) > -1)
         );
+
+
+        this.filteredDrinks.subscribe(f => {
+            if (f.length === 0) {
+                this.filterDrinkNone = true;
+                this.preFilledDrinkName = search;
+            } else {
+                this.filterDrinkNone = false;
+            }
+        });
     }
 
     getCampMenu(id: number) {
@@ -123,9 +147,17 @@ export class EditFoodDetailComponent implements OnInit, OnDestroy {
     }
 
     getFoodDetail() {
-        if (this.foodCtrl.value !== undefined && this.drinkCtrl.value !== undefined) {
-            return new FoodDetail(this.data.type, this.foodCtrl.value.id, this.drinkCtrl.value.id);
+        let foodId, drinkId;
+        if (this.foodCtrl.value !== undefined) {
+            foodId = this.foodCtrl.value.id;
         }
+        if (this.drinkCtrl.value !== undefined) {
+            drinkId = this.drinkCtrl.value.id;
+        }
+
+
+
+        return new FoodDetail(this.data.type, foodId, drinkId);
     }
 
     getType() {
@@ -153,5 +185,17 @@ export class EditFoodDetailComponent implements OnInit, OnDestroy {
         }
         this.showAddDrink = false;
         this.showAddFood = false;
+        this.preFilledDrinkName = '';
+        this.preFilledName = '';
+    }
+
+    addWithoutPreFilledFood() {
+        this.preFilledName = '';
+        this.addFood();
+    }
+
+    addWithoutPreFilledDrink() {
+        this.preFilledDrinkName = '';
+        this.addDrink();
     }
 }

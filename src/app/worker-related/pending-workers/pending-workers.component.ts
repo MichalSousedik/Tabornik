@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/user';
 import {CampService} from '../../service/camp.service';
 import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../structure/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-pending-workers',
@@ -13,7 +15,8 @@ export class PendingWorkersComponent implements OnInit {
   pendings: User[];
 
   constructor(private campService: CampService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.campService.getPendings(+this.getCampId()).subscribe(
@@ -26,8 +29,14 @@ export class PendingWorkersComponent implements OnInit {
     this.campService.addPendingToWorkers(id, +this.getCampId());
   }
 
-  removePending(id: number) {
-    this.campService.removePending(id, +this.getCampId());
+  removePending(id: number, event) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: 'Opravdu chcete zamítnout tohoto žadatele?'});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.campService.removePending(id, +this.getCampId());
+      }
+    });
+    event.stopPropagation();
   }
 
   getCampId() {

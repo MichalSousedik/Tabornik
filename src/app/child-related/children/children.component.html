@@ -4,14 +4,14 @@
       <h1>Děti</h1>
     </div>
     <div class="col-md-4 buttons">
-      <button routerLink="../add-child" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Přidat děti
-      </button>
-      <button routerLink="../copy-children" class="btn btn-default" style="margin-left: 5px">
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-        Kopírovat děti z jiného táboru
-      </button>
+<!--      <button routerLink="../add-child" class="btn btn-default">-->
+<!--        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>-->
+<!--        Přidat děti-->
+<!--      </button>-->
+<!--      <button routerLink="../copy-children" class="btn btn-default" style="margin-left: 5px">-->
+<!--        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>-->
+<!--        Kopírovat děti z jiného táboru-->
+<!--      </button>-->
     </div>
   </div>
   <table class="table">
@@ -30,25 +30,26 @@
         Zákonný zástupce
       </th>
       <th>
-        Kontakt z. z.
+        Kontakt - telefon
+      </th>
+      <th>
+        Zaplaceno
       </th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let child of children" [class.not-paid]="!hasChildPaid(child)">
+    <tr *ngFor="let child of children">
       <td>{{child.name}}</td>
       <td>{{child.age}}</td>
       <td>{{child.nickname}}</td>
       <td>{{child.representative}}</td>
       <td>{{child.contact}}</td>
+      <td>{{hasChildPaid(child) ? 'Ano' : 'Ne'}}</td>
       <td>
-        <button *ngIf="!hasChildPaid(child)" (click)="cashApprove(child.id)" class="btn" style="padding: 0; margin-left: 5px" title="Zaplatil">
-          <span class="glyphicon glyphicon-ok"></span>
-        </button>
         <button (click)="edit(child)" class="btn" style="padding: 0; margin-left: 5px" title="Upravit">
           <span class="glyphicon glyphicon-pencil"></span>
         </button>
-        <button (click)="remove(child.id)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
+        <button (click)="remove(child.id, $event)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </td>

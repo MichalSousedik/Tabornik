@@ -4,6 +4,7 @@ import {CampService} from '../../service/camp.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {EditWorkerComponent} from '../edit-worker/edit-worker.component';
+import {ConfirmDialogComponent} from '../../structure/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-accepted-workers',
@@ -29,8 +30,14 @@ export class AcceptedWorkersComponent implements OnInit {
         return this.route.parent.snapshot.paramMap.get('id');
     }
 
-    remove(id: number) {
-        this.campService.removeWorker(id, +this.getCampId());
+    remove(id: number, event) {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: 'Opravdu chcete odebrat tohoto pracovníka?'});
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.campService.removeWorker(id, +this.getCampId());
+            }
+        });
+        event.stopPropagation();
     }
 
     edit(worker: User) {

@@ -5,10 +5,18 @@ html, body {
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .mat-dialog-title, .mat-dialog-content, .mat-button{
-  font-family: 'Raleway', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 /*body { margin: 0; font-family: 'Roboto', sans-serif; }*/
+.btn {
+  background: white !important;
+}
+
+
+.is-invalid {
+  border: 1px solid #a94442;
+}

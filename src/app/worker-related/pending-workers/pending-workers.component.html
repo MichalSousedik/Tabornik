@@ -23,7 +23,7 @@
         <button (click)="addPending(pending.id)" class="btn" style="padding: 0;" title="Přijmout">
           <span class="glyphicon glyphicon-ok"></span>
         </button>
-        <button (click)="removePending(pending.id)" class="btn" style="padding: 0; margin-left: 5px" title="Odmítnout">
+        <button (click)="removePending(pending.id, $event)" class="btn" style="padding: 0; margin-left: 5px" title="Odmítnout">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </td>

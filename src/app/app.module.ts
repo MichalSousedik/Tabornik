@@ -32,6 +32,7 @@ import { EditFoodDetailComponent } from './food-related/edit-food-detail/edit-fo
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AddFoodDetailComponent } from './food-related/add-food-detail/add-food-detail.component';
 import { CopyFoodComponent } from './food-related/copy-food/copy-food.component';
+import { ConfirmDialogComponent } from './structure/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -61,9 +62,10 @@ import { CopyFoodComponent } from './food-related/copy-food/copy-food.component'
         ReadableDate,
         EditFoodDetailComponent,
         AddFoodDetailComponent,
-        CopyFoodComponent
+        CopyFoodComponent,
+        ConfirmDialogComponent
     ],
-    entryComponents: [EditWorkerComponent, EditChildComponent, EditFoodDetailComponent],
+    entryComponents: [EditWorkerComponent, EditChildComponent, EditFoodDetailComponent, ConfirmDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

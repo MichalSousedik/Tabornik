@@ -16,6 +16,7 @@
   </div>
 
   <div *ngIf="campMenus.length > 0">
+    <button (click)="copy()" class="btn btn-default">Kopírovat</button>
     <table class="table" style="margin-top: 20px">
       <thead>
       <tr>
@@ -65,7 +66,6 @@
       </tbody>
 
     </table>
-    <button (click)="copy()" class="btn btn-default">Kopírovat</button>
   </div>
   <div *ngIf="campMenus.length === 0 && campId !== undefined">
     Žádné jídla na výběr

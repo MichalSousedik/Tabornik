@@ -15,7 +15,13 @@
     </select>
   </div>
 
+
+
   <div *ngIf="workers.length > 0">
+
+    <button (click)="copy()" class="btn btn-default">Kopírovat vše</button>
+
+
     <table class="table">
       <thead>
       <tr>
@@ -51,7 +57,6 @@
       </tbody>
 
     </table>
-    <button (click)="copy()" class="btn btn-default">Kopírovat</button>
   </div>
   <div *ngIf="workers.length === 0 && campId !== undefined">
     Žádní pracovníci k výběru

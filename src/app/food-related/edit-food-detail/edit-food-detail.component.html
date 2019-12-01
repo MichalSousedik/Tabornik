@@ -1,10 +1,10 @@
 <ng-container *ngIf="!showAddDrink && !showAddFood">
 
 <h2 mat-dialog-title>{{data.type}}</h2>
-<mat-dialog-content style="width: 400px;">
+<mat-dialog-content style="width: 550px;">
     <div class="form-group">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <mat-form-field style="width: 100%;">
                     <mat-select [formControl]="foodCtrl" placeholder="Jídlo" >
                         <mat-option>
@@ -19,8 +19,13 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-4">
-                <button (click)="addFood()" class="btn btn-default icon">
+            <div class="col-md-5">
+                <button style="margin-bottom: 4px; white-space: normal" (click)="addFood()" class="btn btn-default icon" *ngIf="preFilledName !== undefined && preFilledName.length > 0">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Vytvořit vyhledávané jídlo
+                    ({{preFilledName}})
+                </button>
+                <button (click)="addWithoutPreFilledFood()" class="btn btn-default icon">
                     <span class="glyphicon glyphicon-plus"></span>
                     Vytvořit jídlo
                 </button>
@@ -29,7 +34,7 @@
     </div>
     <div class="form-group" style="margin-top: 1em">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <mat-form-field style="width: 100%;">
                     <mat-select [formControl]="drinkCtrl" placeholder="Pití" >
                         <mat-option>
@@ -44,8 +49,13 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-4">
-                <button (click)="addDrink()" class="btn btn-default icon">
+            <div class="col-md-5">
+                <button style="margin-bottom: 4px; white-space: normal" (click)="addDrink()" class="btn btn-default icon" *ngIf="preFilledDrinkName !== undefined && preFilledDrinkName.length > 0">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Vytvořit vyhledávané pití
+                    ({{preFilledDrinkName}})
+                </button>
+                <button (click)="addWithoutPreFilledDrink()" class="btn btn-default icon">
                     <span class="glyphicon glyphicon-plus"></span>
                     Vytvořit pití
                 </button>
@@ -63,5 +73,6 @@
 <ng-container *ngIf="showAddFood || showAddDrink">
     <app-add-food-detail
         [type]="getType()"
+        [preFilledName]="getType() === 'pití' ? preFilledDrinkName : preFilledName"
         (create)="create($event)"></app-add-food-detail>
 </ng-container>

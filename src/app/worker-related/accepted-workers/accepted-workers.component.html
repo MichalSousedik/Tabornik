@@ -41,7 +41,7 @@
         <button (click)="edit(accepted)" class="btn" style="padding: 0; margin-left: 5px" title="Upravit">
           <span class="glyphicon glyphicon-pencil"></span>
         </button>
-        <button (click)="remove(accepted.id)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
+        <button (click)="remove(accepted.id, $event)" class="btn" style="padding: 0; margin-left: 5px" title="Odebrat z táboru">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </td>

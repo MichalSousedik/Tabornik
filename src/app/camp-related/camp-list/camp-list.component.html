@@ -32,13 +32,13 @@
      </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let camp of camps" routerLink="/camp/{{camp.id}}/detail">
+      <tr class="clickable" *ngFor="let camp of camps" routerLink="/camp/{{camp.id}}/detail">
         <td>{{camp.detail.name}}</td>
         <td>{{getChildrenCount(camp.id)}}/{{camp.capacity}}</td>
         <td>{{camp.detail.startDate | dateTransformer}}</td>
         <td>{{camp.detail.endDate | dateTransformer}}</td>
         <td>
-          <button (click)="removeCamp(camp.id)" class="btn" style="padding: 0">
+          <button (click)="removeCamp(camp.id, $event)" class="btn" style="padding: 0">
             <span class="glyphicon glyphicon-remove"></span>
             Zrušit účast
           </button>

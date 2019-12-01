@@ -4,6 +4,7 @@ import {ChildService} from '../../service/child.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {EditChildComponent} from '../edit-child/edit-child.component';
+import {ConfirmDialogComponent} from '../../structure/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-children',
@@ -48,9 +49,15 @@ export class ChildrenComponent implements OnInit {
         });
     }
 
-    remove(id: number) {
-        this.childService.removeChildFromCamp(id, this.getCampId());
-        this.getChildren();
+    remove(id: number, event) {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: 'Opravdu chcete odebrat toto dítě?'});
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.childService.removeChildFromCamp(id, this.getCampId());
+                this.getChildren();
+            }
+        });
+        event.stopPropagation();
     }
 
     hasChildPaid(child: Child) {

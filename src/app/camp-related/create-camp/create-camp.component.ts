@@ -18,10 +18,25 @@ export class CreateCampComponent implements OnInit {
                 private router: Router) {
     }
 
+    capacityError = false;
+    dateError = false;
+
     ngOnInit() {
     }
 
     createCamp() {
+        if (this.camp.capacity <= 0) {
+            this.capacityError = true;
+            return;
+        } else {
+            this.capacityError = false;
+        }
+        if (this.campService.getDay(this.camp.detail.startDate) > this.campService.getDay(this.camp.detail.endDate)) {
+            this.dateError = true;
+            return;
+        } else {
+            this.dateError = false;
+        }
         const menus = [];
         const start = this.campService.getDay(this.camp.detail.startDate);
         const startMonth = this.campService.getMonth(this.camp.detail.startDate);
